@@ -81,7 +81,7 @@ const refresh = async () => {
   <div class="weather" v-if="weather.list">
     <h1>Hourly</h1>
     <ul>
-      <div v-for="timestamp in weather.list.slice(0, 5)">
+      <div v-for="timestamp in weather.list.slice(0, daily.length)">
         <p>{{ timestamp.dt_txt }}</p>
         <img :src="weatherIcon(timestamp.weather[0].icon)" />
         <p>{{ timestamp.weather[0].main }}</p>
@@ -131,13 +131,15 @@ const refresh = async () => {
     display: flex;
     margin: 10px auto;
     padding-left: 0px;
+    overflow: auto;
+    max-width: 100%;
 
     div {
       border: 1px solid white;
       border-radius: 10px;
       padding: 10px;
       margin: 10px;
-      width: fit-content;
+      width: min-content;
       text-align: center;
     }
   }

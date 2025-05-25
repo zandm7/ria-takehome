@@ -3,8 +3,9 @@
 #app {
   max-width: fit-content;
   margin: 0 auto;
-  padding: 2rem;
   font-weight: normal;
+  grid-template-columns: 1fr 1fr;
+  padding: 0 2rem;
 }
 
 a,
@@ -21,14 +22,7 @@ a,
   }
 }
 
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
-
-  #app {
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
+body {
+  display: flex;
+  place-items: center;
 }

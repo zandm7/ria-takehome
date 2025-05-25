@@ -22,18 +22,30 @@ header {
   max-height: 100vh;
   max-width: fit-content;
   margin: auto;
-}
+  display: flex;
+  place-items: center;
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+  .wrapper {
+    display: flex;
+    place-items: flex-start;
+    flex-wrap: wrap;
+  }
 }
 
 nav {
   width: fit-content;
-  font-size: 12px;
   text-align: center;
-  margin-top: 2rem;
+  font-size: 1rem;
+  padding: 1rem 0;
+  margin-top: 1rem;
+
+  a {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    margin: 10px;
+  }
 }
 
 nav a.router-link-exact-active {
@@ -44,36 +56,6 @@ nav a.router-link-exact-active:hover {
   background-color: transparent;
 }
 
-nav a {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  border: 1px solid var(--color-border);
-  border-radius: 10px;
-  margin: 10px;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: right;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
+nav {
 }
 </style>
