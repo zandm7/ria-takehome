@@ -37,10 +37,12 @@ watch(
 const refresh = async () => {
   const latLon = coords[route.params.city]
   daily.value = []
+
   if (latLon) {
     const response = await fetch(weatherURL(latLon))
     weather.value = await response.json()
   }
+
   if (weather.value) {
     for (const i in weather.value.list) {
       const e = weather.value.list[i]
@@ -50,6 +52,7 @@ const refresh = async () => {
         break
       }
     }
+
     let curIndex = 0
     while (curIndex < weather.value.list.length) {
       if (curIndex === 0 && curIndex !== firstDay.value) {
@@ -60,8 +63,9 @@ const refresh = async () => {
         curIndex += 8
       }
     }
+
     daily.value = daily.value.map((day) => {
-      const temps = day ? day.map((hour) => hour.main.temp).sort() : []
+      const temps = day.map((hour) => hour.main.temp).sort()
       return {
         date: day[0].dt_txt.split(' ')[0],
         low: temps[0],
@@ -76,7 +80,6 @@ const refresh = async () => {
 <template>
   <div class="weather" v-if="weather.list">
     <h1>Hourly</h1>
-
     <ul>
       <div v-for="timestamp in weather.list.slice(0, 5)">
         <p>{{ timestamp.dt_txt }}</p>
