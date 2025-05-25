@@ -106,7 +106,13 @@ const refresh = async () => {
   display: grid;
 
   button {
-    margin: auto;
+    margin: 10px auto;
+    padding: 10px 20px;
+    background-color: inherit;
+    color: white;
+    border-radius: 10px;
+    border: 1px solid white;
+    cursor: pointer;
   }
 
   h1 {
@@ -115,7 +121,8 @@ const refresh = async () => {
 
   ul {
     display: flex;
-    margin: 10px;
+    margin: 10px auto;
+    padding-left: 0px;
 
     div {
       border: 1px solid white;
