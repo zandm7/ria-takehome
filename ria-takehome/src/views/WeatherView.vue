@@ -52,71 +52,78 @@ const refresh = async () => {
     }
     let curIndex = 0
     while (curIndex < weather.value.list.length) {
-      daily.value = daily.value ? daily.value : []
       if (curIndex === 0 && curIndex !== firstDay.value) {
-        daily.value.push(weather.value.list.slice(curIndex, firstDay))
+        daily.value.push(weather.value.list.slice(curIndex, firstDay.value))
         curIndex += firstDay.value
       } else {
         daily.value.push(weather.value.list.slice(curIndex, curIndex + 8))
         curIndex += 8
       }
     }
-    daily.value = daily.value.length
-      ? daily.value.map((day) => {
-          const temps = day ? day.map((hour) => hour.main.temp).sort() : []
-          return {
-            date: day[0].dt_txt.split(' ')[0],
-            low: temps[0],
-            high: temps[temps.length - 1],
-            weather: day[0].weather[0],
-          }
-        })
-      : null
+    daily.value = daily.value.map((day) => {
+      const temps = day ? day.map((hour) => hour.main.temp).sort() : []
+      return {
+        date: day[0].dt_txt.split(' ')[0],
+        low: temps[0],
+        high: temps[temps.length - 1],
+        weather: day[0].weather[0],
+      }
+    })
   }
 }
 </script>
 
 <template>
   <div class="weather" v-if="weather.list">
+    <h1>Hourly</h1>
+
+    <ul>
+      <div v-for="timestamp in weather.list.slice(0, 5)">
+        <p>{{ timestamp.dt_txt }}</p>
+        <img :src="weatherIcon(timestamp.weather[0].icon)" />
+        <p>{{ timestamp.weather[0].main }}</p>
+        <p>{{ timestamp.main.temp }}&deg;F</p>
+        <p>Humidity: {{ timestamp.main.humidity }}%</p>
+      </div>
+    </ul>
+    <h1>Daily</h1>
+    <ul>
+      <div v-for="day in daily">
+        <p>{{ day.date }}</p>
+        <img :src="weatherIcon(day.weather.icon)" />
+        <p>{{ day.weather.main }}</p>
+        <p>High: {{ day.high }}&deg;F</p>
+        <p>Low: {{ day.low }}&deg;F</p>
+      </div>
+    </ul>
     <button @click="refresh">Refresh</button>
-    <header>
-      Hourly
-      <ul>
-        <div v-for="timestamp in weather.list.slice(0, 5)">
-          <p>{{ timestamp.dt_txt }}</p>
-          <img :src="weatherIcon(timestamp.weather[0].icon)" />
-          <p>{{ timestamp.weather[0].description }}</p>
-          <p>{{ timestamp.main.temp }}&deg;F</p>
-          <p>{{ timestamp.main.humidity }}%</p>
-        </div>
-      </ul>
-    </header>
-    <header>
-      Daily
-      <ul>
-        <div v-for="day in daily">
-          <p>{{ day.date }}</p>
-          <img :src="weatherIcon(day.weather!.icon)" />
-          <p>{{ day.weather!.description }}</p>
-          <p>High: {{ day.high }}&deg;F</p>
-          <p>Low: {{ day.low }}&deg;F</p>
-        </div>
-      </ul>
-    </header>
   </div>
   <div v-else>Whoops...</div>
 </template>
 
 <style>
 .weather {
-  display: flexbox;
+  display: grid;
+
+  button {
+    margin: auto;
+  }
+
+  h1 {
+    margin: auto;
+  }
+
   ul {
     display: flex;
+    margin: 10px;
+
     div {
       border: 1px solid white;
+      border-radius: 10px;
       padding: 10px;
       margin: 10px;
       width: fit-content;
+      text-align: center;
     }
   }
 }

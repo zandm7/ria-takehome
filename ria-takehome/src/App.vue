@@ -20,6 +20,8 @@ import { RouterLink, RouterView } from 'vue-router'
 header {
   line-height: 1.5;
   max-height: 100vh;
+  max-width: fit-content;
+  margin: auto;
 }
 
 .logo {
@@ -28,7 +30,7 @@ header {
 }
 
 nav {
-  width: 100%;
+  width: fit-content;
   font-size: 12px;
   text-align: center;
   margin-top: 2rem;
@@ -56,7 +58,6 @@ nav a:first-of-type {
   header {
     display: flex;
     place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
   }
 
   .logo {
@@ -70,7 +71,7 @@ nav a:first-of-type {
   }
 
   nav {
-    text-align: left;
+    text-align: right;
     font-size: 1rem;
 
     padding: 1rem 0;
