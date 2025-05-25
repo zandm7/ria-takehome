@@ -18,6 +18,11 @@ const router = createRouter({
         },
       ],
     },
+
+    {
+      path: '/:any',
+      redirect: '/weather',
+    },
   ],
 })
 
