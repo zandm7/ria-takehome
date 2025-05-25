@@ -109,10 +109,15 @@ const refresh = async () => {
     margin: 10px auto;
     padding: 10px 20px;
     background-color: inherit;
-    color: white;
+    color: inherit;
     border-radius: 10px;
     border: 1px solid white;
     cursor: pointer;
+
+    &:hover {
+      color: white;
+      filter: drop-shadow(8px 8px 10px white);
+    }
   }
 
   h1 {
