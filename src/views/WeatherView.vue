@@ -144,4 +144,8 @@ const refresh = async () => {
     }
   }
 }
+
+div {
+  text-align: center;
+}
 </style>
