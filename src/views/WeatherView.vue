@@ -81,7 +81,7 @@ const refresh = async () => {
   <div class="weather" v-if="weather.list">
     <h1>Hourly</h1>
     <ul>
-      <div v-for="timestamp in weather.list.slice(0, daily.length)">
+      <div v-for="timestamp in weather.list.slice(0, daily.length)" :key="timestamp.dt">
         <p>{{ timestamp.dt_txt }}</p>
         <img :src="weatherIcon(timestamp.weather[0].icon)" />
         <p>{{ timestamp.weather[0].main }}</p>
@@ -91,7 +91,7 @@ const refresh = async () => {
     </ul>
     <h1>Daily</h1>
     <ul>
-      <div v-for="day in daily">
+      <div v-for="day in daily" :key="day.date">
         <p>{{ day.date }}</p>
         <img :src="weatherIcon(day.weather.icon)" />
         <p>{{ day.weather.main }}</p>
